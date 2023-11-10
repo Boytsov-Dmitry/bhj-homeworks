@@ -10,13 +10,26 @@ for (holeIndex = 1; holeIndex < 10; holeIndex++) {
             if(Number(winPressKey.textContent) === 10){
                 alert('Победа!');
                 winPressKey.textContent = 0;
+                losePressKey.textContent = 0;
             };
         } else {
             losePressKey.textContent++
             if(Number(losePressKey.textContent) === 5){
                 alert('Поражение!');
                 losePressKey.textContent = 0;
+                winPressKey.textContent = 0;
             }
         };
     };
 };
+
+
+
+
+pressMinus.addEventListener('click', () => {
+    if(volumeArray[volume].classList.contains('volume-rect__active')) {
+        volumeArray[volume].classList.remove('volume-rect__active');
+        indicatorVol.textContent--;
+        volume--;
+    }
+});
