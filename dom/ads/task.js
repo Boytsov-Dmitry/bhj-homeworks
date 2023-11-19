@@ -3,15 +3,23 @@ const cases = Array.from(document.querySelectorAll('.rotator__case'))
 let i = 0;
 
 setInterval(() => {
-    if (i < cases.length) {
-        mainPart + cases[i].classList.toggle('rotator__case_active');
-        // mainPart + cases[i].classList.add('rotator__case_active');
-        i++;
-        mainPart + cases[i].classList.toggle('rotator__case_active');
-    };
-    
-    if (i === cases.length) {
-        mainPart + cases[0].classList.add('rotator__case_active');
-        i = 0;
-    };
+    rotator()
 }, 1000);
+
+function rotator() {
+    if (i < cases.length && i !== cases.length) {
+        cases[i].classList.remove('rotator__case_active');
+        i++;
+        if (i === cases.length) {
+            cases[0].classList.add('rotator__case_active');
+            i = 0;
+        };
+
+        cases[i].classList.add('rotator__case_active');
+    };
+};
+
+
+
+
+
