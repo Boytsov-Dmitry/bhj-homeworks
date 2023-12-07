@@ -9,7 +9,7 @@ const taskDeleteLink = document.createElement('a');
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    if(inputField.value !== '') {
+    if(inputField.value.trim()) {
         taskList.insertAdjacentElement('afterbegin', taskMain);
         taskMain.insertAdjacentElement('afterbegin', taskInside);
         taskInside.insertAdjacentElement('afterend', taskDeleteLink);
@@ -21,21 +21,11 @@ form.addEventListener('submit', (e) => {
         taskInside.textContent = inputField.value;
         taskDeleteLink.textContent = '×';
 
-        if(taskList.children.length > 0) {
-            taskList.appendChild(taskMain.cloneNode(true));
-            taskList.firstChild.remove();
-        }
+        taskList.appendChild(taskMain.cloneNode(true));
+        taskList.firstChild.remove();
+        taskList.lastElementChild.querySelector('.task__remove').addEventListener('click', e => e.target.closest('.task').remove());
     };
-
+  
     inputField.value = '';
-
-    const taskDeleteLinkList = Array.from(document.querySelectorAll('.task__remove'));
-
-    taskDeleteLinkList.forEach((element) => {
-        element.addEventListener('click', (e) => {
-            e.preventDefault();
-            element.parentElement.remove();
-        });
-    });
 });
 

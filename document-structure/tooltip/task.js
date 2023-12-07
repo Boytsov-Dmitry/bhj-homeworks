@@ -11,7 +11,12 @@ tool.forEach((elem) => {
         element.remove();
 
         element.innerText = elem.title;
-        element.classList.add('tooltip', 'tooltip_active');
+
+        if(element.classList.contains('tooltip_active')) {
+            element.classList.remove('tooltip_active');
+        } else {
+            element.classList.add('tooltip', 'tooltip_active');
+        }
 
         element.setAttribute('style', `left: ${elementPosition.left}px`);
         elem.insertAdjacentElement('afterEnd', element);
