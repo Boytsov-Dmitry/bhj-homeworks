@@ -10,7 +10,7 @@ const productCount = document.createElement('div');
 productControls.forEach((elem) => {
     elem.firstElementChild.addEventListener('click', (e) => {
         e.preventDefault();
-        if(elem.children[1].textContent > 0) {
+        if(elem.children[1].textContent > 1) {
             elem.children[1].textContent -= 1;
         };
     });
@@ -28,29 +28,27 @@ product.forEach((e) => {
     const count = e.querySelector('.product__quantity-value');
 
     add.addEventListener('click', () => {
-        if(count.textContent > 0) {
-            const listOfProducts = Array.from(document.querySelectorAll('.cart__product'));
+        const listOfProducts = Array.from(document.querySelectorAll('.cart__product'));
 
-            cartProduct.insertAdjacentElement('afterbegin', mainCard);
-            mainCard.insertAdjacentElement('afterbegin', cardIMG);
-            cardIMG.insertAdjacentElement('afterend', productCount);
+        cartProduct.insertAdjacentElement('afterbegin', mainCard);
+        mainCard.insertAdjacentElement('afterbegin', cardIMG);
+        cardIMG.insertAdjacentElement('afterend', productCount);
 
-            mainCard.classList.add('cart__product');
-            cardIMG.classList.add('cart__product-image');
-            productCount.classList.add('cart__product-count');
+        mainCard.classList.add('cart__product');
+        cardIMG.classList.add('cart__product-image');
+        productCount.classList.add('cart__product-count');
 
-            mainCard.setAttribute('data-id', e.getAttribute('data-id'));
-            cardIMG.setAttribute('src', img.getAttribute('src'));
-            productCount.textContent = count.textContent;    
+        mainCard.setAttribute('data-id', e.getAttribute('data-id'));
+        cardIMG.setAttribute('src', img.getAttribute('src'));
+        productCount.textContent = count.textContent;    
 
-            const productInCard = listOfProducts.find((element) => element.getAttribute('data-id') === mainCard.getAttribute('data-id'));  
-            if(productInCard) {
-                mainCard.remove();
-                productInCard.children[1].textContent = Number(count.textContent) + Number(productInCard.children[1].textContent);
-            } else {               
-                cartProduct.appendChild(mainCard.cloneNode(true));
-                cartProduct.firstChild.remove();
-            };
+        const productInCard = listOfProducts.find((element) => element.getAttribute('data-id') === mainCard.getAttribute('data-id'));  
+        if(productInCard) {
+            mainCard.remove();
+            productInCard.children[1].textContent = Number(count.textContent) + Number(productInCard.children[1].textContent);
+        } else {               
+            cartProduct.appendChild(mainCard.cloneNode(true));
+            cartProduct.firstChild.remove();
         };
     });
 });
