@@ -1,7 +1,4 @@
 const popUp = document.querySelector('.modal');
-
-popUp.classList.add('modal_active');
-
 const closeKey = document.querySelector('.modal__close');
 
 function setCookie(name, value) {
@@ -13,17 +10,16 @@ function getCookie(name) {
     const cookie = pairs.find(e => e.startsWith(name + '='));
     if(cookie !== undefined) {
         return cookie.substring(name.length + 1);
-    }
+    };
 };
 
-const popUpResult = getCookie('popUpValue')
+const popUpResult = getCookie('popUpValue');
+
+if(popUpResult === undefined) {
+    popUp.classList.add('modal_active');
+};
 
 closeKey.addEventListener('click', () => {
     popUp.classList.remove('modal_active');
-    document.cookie = 'popUpValue=closed'
+    document.cookie = 'popUpValue=closed';
 });
-
-if(popUpResult === 'closed') {
-    popUp.classList.remove('modal_active');
-};
-

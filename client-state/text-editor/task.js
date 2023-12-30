@@ -1,12 +1,7 @@
 
-const inputField = document.querySelector('.card')
+const textArea = document.querySelector('textarea')
 
-inputField.querySelectorAll('textarea, input').forEach((e) => {
-    if(e.value === '') {
-        e.value = window.sessionStorage.getItem(e.name, e.value);
-    };
-
-    e.addEventListener('input', () => {
-        window.sessionStorage.setItem(e.name, e.value);
-    })
-});
+textArea.value = sessionStorage.getItem(textArea.name, textArea.value);
+textArea.oninput = function(){
+    sessionStorage.setItem(textArea.name, textArea.value);
+};
