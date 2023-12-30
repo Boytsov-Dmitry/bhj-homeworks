@@ -17,7 +17,7 @@ form.addEventListener('submit', (e) => {
             welcomeForm.classList.add('welcome_active');
             welcomeId.textContent = xhr.response.user_id;
         } else {
-            alert('Не вырный логин / пароль!');
+            alert('Неверный логин / пароль!');
         };
     });
 
